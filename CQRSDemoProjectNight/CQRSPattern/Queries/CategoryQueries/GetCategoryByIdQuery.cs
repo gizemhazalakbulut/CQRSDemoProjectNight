@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
 
-        public GetCategoryByIdQuery(int ıd)
+        public GetCategoryByIdQuery(int id)
         {
-            Id = ıd;
+            Id = id;
         }
     }
 }
