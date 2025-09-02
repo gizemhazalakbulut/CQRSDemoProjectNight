@@ -17,6 +17,7 @@ namespace CQRSDemoProjectNight.CQRSPattern.Handlers.CategoryHandlers
             var values = await _context.Categories.FindAsync(query.Id);
             return new GetCategoryByIdQueryResult
             {
+                CategoryId = values.CategoryId,
                 CategoryName = values.CategoryName
             };
         }

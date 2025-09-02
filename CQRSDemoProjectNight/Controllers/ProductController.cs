@@ -49,5 +49,11 @@ namespace CQRSDemoProjectNight.Controllers
             var values = await _getProductByIdQueryHandler.Handle(new GetProductByIdQuery(id));
             return View(values);
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateProduct(UpdateProductCommand command)
+        {
+            await _updateProductCommandHandler.Handle(command);
+            return RedirectToAction("ProductList");
+        }
     }
 }

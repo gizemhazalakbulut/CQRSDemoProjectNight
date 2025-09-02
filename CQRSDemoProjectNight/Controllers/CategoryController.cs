@@ -1,5 +1,7 @@
 ﻿using CQRSDemoProjectNight.CQRSPattern.Commands.CategoryCommands;
+using CQRSDemoProjectNight.CQRSPattern.Commands.ProductCommands;
 using CQRSDemoProjectNight.CQRSPattern.Handlers.CategoryHandlers;
+using CQRSDemoProjectNight.CQRSPattern.Handlers.ProductHandlers;
 using CQRSDemoProjectNight.CQRSPattern.Queries.CategoryQueries;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,10 +47,17 @@ namespace CQRSDemoProjectNight.Controllers
             return RedirectToAction("CategoryList");
         }
 
+        [HttpGet]
         public async Task<IActionResult> UpdateCategory(int id)
         {
             var values = await _getCategoryByIdQueryHandler.Handle(new GetCategoryByIdQuery(id));
             return View(values);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
+        {
+            await _updateCategoryCommandHandler.Handle(command);
+            return RedirectToAction("CategoryList");
         }
 
     }
